@@ -3,6 +3,8 @@
 
   # inputs: external flakes this flake depends on
   inputs = {
+    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*";
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -27,9 +29,12 @@
   };
 
   # Flake ooutputs
-  outputs = {...} @ inputs: let
+  outputs = {...} @ inputs: 
+  let
     hosts = import ./hosts {inherit inputs;};
   in {
+    # Schemas tell Nix about the structure of your flake's outputs
+    schemas = inputs.flake-schemas.schemas;
     nixosConfigurations = hosts.nixos;
     homeConfigurations  = hosts.home;
   };

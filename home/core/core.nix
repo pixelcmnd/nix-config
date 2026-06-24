@@ -16,7 +16,6 @@
     deadnix # Find and remove unused code in .nix source files
 
     # dev toolchain / formatters / lang
-    gcc # GNU Compiler Collection
     nodejs
     python3 # High-level dynamically-typed programming language
     ruff # Extremely fast Python linter and code formatter
@@ -44,8 +43,6 @@
     imagemagick
     btop
     chezmoi
-    trashy
-    file # Program that shows the type of files
     grc # Generic text coloriser
 
     # misc
