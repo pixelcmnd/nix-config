@@ -32,6 +32,7 @@
     nil # Yet another language server for Nix
     alejandra # Nix formatter
     taplo # TOML toolkit written in Rust
+    go
 
     # utils
     curl
