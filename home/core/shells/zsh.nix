@@ -1,4 +1,8 @@
-{pkgs, myvars, ...}: {
+{
+  pkgs,
+  myvars,
+  ...
+}: {
   programs.zsh = {
     enable = true;
 

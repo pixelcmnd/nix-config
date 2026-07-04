@@ -1,7 +1,7 @@
 {inputs, ...}: let
   sharedVars = import ../../../vars.nix;
-  hostVars   = import ./vars.nix;
-  myvars     = sharedVars // hostVars;
+  hostVars = import ./vars.nix;
+  myvars = sharedVars // hostVars;
 in
   inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = import inputs.nixpkgs {

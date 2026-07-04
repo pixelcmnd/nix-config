@@ -1,4 +1,8 @@
-{myvars, pkgs, ...}: {
+{
+  myvars,
+  pkgs,
+  ...
+}: {
   nix.package = pkgs.nix;
 
   nix.settings = {
