@@ -16,41 +16,27 @@
     deadnix # Find and remove unused code in .nix source files
 
     # dev toolchain / formatters / lang
-    nodejs
     python3 # High-level dynamically-typed programming language
     ruff # Extremely fast Python linter and code formatter
     uv # Extremely fast Python package installer and resolver, written in Rust
     rustup # Rust toolchain installer
-    bash-language-server # Language server for Bash
-    fish-lsp # LSP implementation for the fish shell language
     clang-tools # Standalone command line tools for C++ development
     lldb # Next-generation high-performance debugger
     marksman # Language Server for Markdown
-    jq-lsp # jq language server
-    typescript-language-server # Language Server Protocol implementation for TypeScript using tsserver
-    vscode-langservers-extracted # HTML/CSS/JSON/ESLint language servers extracted from vscode
     nil # Yet another language server for Nix
     alejandra # Nix formatter
     taplo # TOML toolkit written in Rust
-    go
+    go # Go Programming language
 
     # utils
-    curl
-    wget
-    ripgrep
-    fd
-    jq
-    unzip
-    imagemagick
-    btop
-    chezmoi
-    grc # Generic text coloriser
+    curl # Command line tool for transferring files with URL syntax
+    wget # Tool for retrieving files using HTTP, HTTPS, and FTP
+    ripgrep # Utility that combines the usability of The Silver Searcher with the raw speed of grep
+    fd # Simple, fast and user-friendly alternative to find
+    jq # Lightweight and flexible command-line JSON processor
+    imagemagick # Software suite to create, edit, compose, or convert bitmap images
+    btop # Monitor of resources
     just # Handy way to save and run project-specific commands
-
-    # misc
-    # A fast and polyglot tool for code searching, linting, rewriting at large scale
-    # supported languages: only some mainstream languages currently(do not support nix/nginx/yaml/toml/...)
-    ast-grep
   ];
 
   # A modern replacement for ‘ls’
@@ -71,7 +57,10 @@
   };
 
   # A command-line fuzzy finder
-  programs.fzf.enable = true;
+  programs.fzf = {
+    enable = true;
+    historyWidget.command = "";
+  };
 
   # very fast version of tldr in Rust
   programs.tealdeer = {
@@ -110,7 +99,6 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    enableFishIntegration = true;
     enableNushellIntegration = true;
   };
 
@@ -122,7 +110,6 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    enableFishIntegration = true;
     enableNushellIntegration = true;
   };
 
@@ -131,7 +118,6 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    enableFishIntegration = true;
     enableNushellIntegration = true;
   };
 
