@@ -45,6 +45,7 @@
     btop
     chezmoi
     grc # Generic text coloriser
+    just # Handy way to save and run project-specific commands
 
     # misc
     # A fast and polyglot tool for code searching, linting, rewriting at large scale
