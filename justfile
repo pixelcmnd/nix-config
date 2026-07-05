@@ -42,14 +42,11 @@ clean:
   # Wipe out home-manager's history
   nix profile wipe-history --profile "$XDG_STATE_HOME/nix/profiles/home-manager"
 
-# Garbage collect all unused nix store entries
+# Garbage collect all unused nix store entries and optimise store
 [group('nix')]
 gc:
-  # garbage collect all unused nix store entries(system-wide)
-  sudo nix-collect-garbage --delete-older-than 7d
-  # garbage collect all unused nix store entries(for the user - home-manager)
-  # https://github.com/NixOS/nix/issues/8508
-  nix-collect-garbage --delete-older-than 7d
+  nix store gc
+  nix store optimise
 
 # upgrade determinate nix
 [macos]
