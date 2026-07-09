@@ -6,7 +6,7 @@
 
     ./core.nix
     #./cache.nix
-    # ./yazi.nix
+    ./yazi.nix
     ./git.nix
     ./zellij.nix
   ];

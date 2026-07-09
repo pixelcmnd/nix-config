@@ -52,7 +52,6 @@
       chmod = pkgs.yaziPlugins.chmod;
       full-border = pkgs.yaziPlugins.full-border;
       relative-motion = pkgs.yaziPlugins.relative-motions;
-      recycle-bin = pkgs.yaziPlugins.recycle-bin;
       lazygit = pkgs.yaziPlugins.lazygit;
     };
 
