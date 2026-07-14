@@ -37,7 +37,7 @@
     imagemagick # Software suite to create, edit, compose, or convert bitmap images
     btop # Monitor of resources
     just # Handy way to save and run project-specific commands
-    ffmpeg-full # Complete, cross-platform solution to record, convert and stream audio and video
+    ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
     qemu # Generic and open source machine emulator and virtualizer
   ];
 
