@@ -39,6 +39,7 @@
     just # Handy way to save and run project-specific commands
     ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
     qemu # Generic and open source machine emulator and virtualizer
+    qman # A more modern man page viewer for our terminals
   ];
 
   # A modern replacement for ‘ls’
@@ -78,6 +79,11 @@
         auto_update_interval_hours = 720;
       };
     };
+  };
+
+  programs.man = {
+    enable = true;
+    generateCaches = true;
   };
 
   # zoxide is a smarter cd command, inspired by z and autojump.
