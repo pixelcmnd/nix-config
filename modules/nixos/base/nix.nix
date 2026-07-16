@@ -24,10 +24,4 @@
   # nix.extraOptions = ''
   #   !include ${config.age.secrets.nix-access-tokens.path}
   # '';
-
-  # DetNix settings
-  nix.settings.extra-experimental-features = "parallel-eval";
-  # Enable lazy-trees
-  nix.settings.lazy-trees = true;
-  nix.settings.eval-cores = 0;
 }
