@@ -27,6 +27,7 @@
     alejandra # Nix formatter
     taplo # TOML toolkit written in Rust
     go # Go Programming language
+    statix # Lints and suggestions for the nix programming language
 
     # utils
     curl # Command line tool for transferring files with URL syntax
