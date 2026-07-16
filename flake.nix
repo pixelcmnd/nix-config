@@ -3,8 +3,6 @@
 
   # inputs: external flakes this flake depends on
   inputs = {
-    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*";
-
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -21,19 +19,12 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    determinate = {
-      url = "github:DeterminateSystems/determinate";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   # Flake ooutputs
   outputs = {...} @ inputs: let
     hosts = import ./hosts {inherit inputs;};
   in {
-    # Schemas tell Nix about the structure of your flake's outputs
-    schemas = inputs.flake-schemas.schemas;
     nixosConfigurations = hosts.nixos;
     homeConfigurations = hosts.home;
   };

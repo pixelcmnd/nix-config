@@ -35,24 +35,11 @@ history:
 repl:
   nix repl -f flake:nixpkgs
 
-# remove all old generations
-# on darwin, you may need to switch to root user to run this command
-[group('nix')]
-clean:
-  # Wipe out home-manager's history
-  nix profile wipe-history --profile "$XDG_STATE_HOME/nix/profiles/home-manager"
-
 # Garbage collect all unused nix store entries and optimise store
 [group('nix')]
 gc:
   nix store gc
   nix store optimise
-
-# upgrade determinate nix
-[macos]
-[group('nix')]
-nix-upgrade:
-  sudo determinate-nixd upgrade
 
 [group('nix')]
 fmt:
