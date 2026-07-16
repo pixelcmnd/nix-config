@@ -125,6 +125,15 @@
           "layout floating"
         ];
       }
+      {
+        check-further-callbacks = true;
+        "if" = {
+          app-id = "com.apple.finder";
+        };
+        run = [
+          "layout floating"
+        ];
+      }
     ];
   };
 }
