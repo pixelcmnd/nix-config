@@ -1,35 +1,6 @@
 {pkgs, ...}: {
-  # CLI / dev / TUI tools used by the user
+  # CLI / TUI tools
   home.packages = with pkgs; [
-    # nix related
-    #
-    # it provides the command `nom` works just like `nix
-    # with more details log output
-    nix-output-monitor
-    hydra-check # check hydra(nix's build farm) for the build status of a package
-    nix-index # A small utility to index nix store paths
-    nix-init # generate nix derivation from url
-    # https://github.com/nix-community/nix-melt
-    nix-melt # A TUI flake.lock viewer
-    # https://github.com/utdemir/nix-tree
-    nix-tree # A TUI to visualize the dependency graph of a nix derivation
-    deadnix # Find and remove unused code in .nix source files
-
-    # dev toolchain / formatters / lang
-    python3 # High-level dynamically-typed programming language
-    ruff # Extremely fast Python linter and code formatter
-    uv # Extremely fast Python package installer and resolver, written in Rust
-    rustup # Rust toolchain installer
-    clang-tools # Standalone command line tools for C++ development
-    lldb # Next-generation high-performance debugger
-    marksman # Language Server for Markdown
-    nil # Yet another language server for Nix
-    alejandra # Nix formatter
-    taplo # TOML toolkit written in Rust
-    go # Go Programming language
-    statix # Lints and suggestions for the nix programming language
-
-    # utils
     curl # Command line tool for transferring files with URL syntax
     wget # Tool for retrieving files using HTTP, HTTPS, and FTP
     ripgrep # Utility that combines the usability of The Silver Searcher with the raw speed of grep
@@ -37,9 +8,7 @@
     jq # Lightweight and flexible command-line JSON processor
     imagemagick # Software suite to create, edit, compose, or convert bitmap images
     btop # Monitor of resources
-    just # Handy way to save and run project-specific commands
     ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
-    qemu # Generic and open source machine emulator and virtualizer
     qman # A more modern man page viewer for our terminals
   ];
 
@@ -47,7 +16,6 @@
   # useful in fish/bash prompt, not in nushell.
   programs.lsd = {
     enable = true;
-    # do not enable aliases in nushell!
     enableBashIntegration = true;
     enableFishIntegration = true;
   };
