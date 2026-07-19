@@ -1,6 +1,7 @@
 {...}: {
   imports = [
-    ./aerospace.nix
+    ./aerospace
+
     ./session-vars.nix
   ];
 }
