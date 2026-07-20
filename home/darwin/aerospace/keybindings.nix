@@ -27,6 +27,7 @@
         ctrl-equal = "resize smart +50";
 
         # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+        ctrl-0 = "workspace 0";
         ctrl-1 = "workspace 1";
         ctrl-2 = "workspace 2";
         ctrl-3 = "workspace 3";
@@ -38,6 +39,7 @@
         ctrl-9 = "workspace 9";
 
         # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+        ctrl-shift-0 = "move-node-to-workspace 0";
         ctrl-shift-1 = "move-node-to-workspace 1";
         ctrl-shift-2 = "move-node-to-workspace 2";
         ctrl-shift-3 = "move-node-to-workspace 3";

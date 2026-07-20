@@ -26,5 +26,5 @@
   # Fallback value (if you omit the key): on-focused-monitor-changed = []
   programs.aerospace.settings.on-focused-monitor-changed = ["move-mouse monitor-lazy-center"];
   programs.aerospace.settings.automatically-unhide-macos-hidden-apps = false;
-  programs.aerospace.settings.persistent-workspaces = ["1" "2" "3" "4" "5" "6" "7" "8" "9" "0"];
+  programs.aerospace.settings.persistent-workspaces = ["0" "1" "2" "3" "4" "5" "6" "7" "8" "9"];
 }
