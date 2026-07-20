@@ -3,18 +3,18 @@
     main = {
       binding = {
         # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-        ctrl-cmd-slash = "layout tiles horizontal vertical";
-        ctrl-cmd-comma = "layout accordion horizontal vertical";
-        ctrl-cmd-v = "layout floating tiling";
-        ctrl-cmd-f = "fullscreen";
+        ctrl-shift-slash = "layout tiles horizontal vertical";
+        ctrl-shift-comma = "layout accordion horizontal vertical";
+        ctrl-shift-v = "layout floating tiling";
+        ctrl-shift-f = "fullscreen";
 
         # See: https://nikitabobko.github.io/AeroSpace/commands#focus
         ctrl-cmd-h = "focus left";
         ctrl-cmd-j = "focus down";
         ctrl-cmd-k = "focus up";
         ctrl-cmd-l = "focus right";
-        ctrl-shift-cmd-h = "focus-monitor left";
-        ctrl-shift-cmd-l = "focus-monitor right";
+        ctrl-alt-cmd-h = "focus-monitor left";
+        ctrl-alt-cmd-l = "focus-monitor right";
 
         # See: https://nikitabobko.github.io/AeroSpace/commands#move
         ctrl-shift-h = "move left";
@@ -65,10 +65,10 @@
         r = ["flatten-workspace-tree" "mode main"]; # reset layout
         backspace = ["close-all-windows-but-current" "mode main"];
 
-        alt-shift-h = ["join-with left" "mode main"];
-        alt-shift-j = ["join-with down" "mode main"];
-        alt-shift-k = ["join-with up" "mode main"];
-        alt-shift-l = ["join-with right" "mode main"];
+        ctrl-cmd-h = ["join-with left" "mode main"];
+        ctrl-cmd-j = ["join-with down" "mode main"];
+        ctrl-cmd-k = ["join-with up" "mode main"];
+        ctrl-cmd-l = ["join-with right" "mode main"];
       };
     };
   };
