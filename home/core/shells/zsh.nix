@@ -27,6 +27,8 @@
     zle -N zle-line-init
     if [[ "$OSTYPE" == darwin* ]]; then
       export SSH_AUTH_SOCK="$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"
+      export PATH="$HOME/.cargo/bin:$PATH"
+
     else
       export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
     fi
