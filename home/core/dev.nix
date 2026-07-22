@@ -18,7 +18,7 @@
     uv # Extremely fast Python package installer and resolver, written in Rust
 
     # Clang
-    clang # C language family frontend for LLVM
+    # clang # C language family frontend for LLVM
     clang-tools # Standalone command line tools for C++ development
     lldb # Next-generation high-performance debugger
 
