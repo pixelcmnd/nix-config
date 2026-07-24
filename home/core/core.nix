@@ -10,6 +10,7 @@
     btop # Monitor of resources
     ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
     qman # A more modern man page viewer for our terminals
+    fastfetch # Actively maintained, feature-rich and performance oriented, neofetch like system information tool
   ];
 
   # A modern replacement for ‘ls’
