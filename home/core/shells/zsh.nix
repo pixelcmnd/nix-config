@@ -25,10 +25,12 @@
     }
     zle -N zle-keymap-select
     zle -N zle-line-init
+    export PATH="$HOME/.cargo/bin:$PATH"
+    export PATH="$HOME/.local/bin:$PATH"
+
     if [[ "$OSTYPE" == darwin* ]]; then
       export SSH_AUTH_SOCK="$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"
-      export PATH="$HOME/.cargo/bin:$PATH"
-      export PATH="$HOME/.local/bin:$PATH"
+      export PATH="/opt/homebrew/bin:$PATH"
     else
       export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
     fi
