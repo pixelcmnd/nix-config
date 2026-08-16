@@ -14,22 +14,6 @@
     mpv # General-purpose media player, fork of MPlayer and mplayer2
   ];
 
-  # A modern replacement for ‘ls’
-  # useful in fish/bash prompt, not in nushell.
-  programs.lsd = {
-    enable = true;
-    enableBashIntegration = true;
-    enableFishIntegration = true;
-  };
-
-  # a cat(1) clone with syntax highlighting and Git integration.
-  programs.bat = {
-    enable = true;
-    config = {
-      pager = "less -FR";
-    };
-  };
-
   # A command-line fuzzy finder
   programs.fzf = {
     enable = true;
@@ -75,17 +59,6 @@
   #
   #   z foo<SPACE><TAB>  # show interactive completions (zoxide v0.8.0+, bash 4.4+/fish/zsh only)
   programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableNushellIntegration = true;
-  };
-
-  # Atuin replaces your existing shell history with a SQLite database,
-  # and records additional context for your commands.
-  # Additionally, it provides optional and fully encrypted
-  # synchronisation of your history between machines, via an Atuin server.
-  programs.atuin = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;

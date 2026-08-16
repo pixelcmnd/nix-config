@@ -2,7 +2,7 @@
   programs.zsh.enable = true;
 
   programs.zsh.oh-my-zsh.enable = true;
-  programs.zsh.oh-my-zsh.theme = "rgm";
+  programs.zsh.oh-my-zsh.theme = "ys";
   programs.zsh.oh-my-zsh.plugins = [
     "git"
   ];
@@ -31,6 +31,7 @@
     if [[ "$OSTYPE" == darwin* ]]; then
       export SSH_AUTH_SOCK="$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"
       export PATH="/opt/homebrew/bin:$PATH"
+      fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
     else
       export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
     fi
@@ -91,4 +92,5 @@
   };
 
   home.shell.enableZshIntegration = true;
+  programs.zsh.autosuggestion.enable = true;
 }
