@@ -28,7 +28,6 @@
     # Tools
     "EDITOR" = "nvim";
     "VISUAL" = "nvim";
-    "PAGER" = "bat --paging=always";
     "PF_INFO" = "ascii title os kernel uptime pkgs memory";
 
     # misc
