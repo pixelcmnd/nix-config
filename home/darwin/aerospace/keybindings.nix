@@ -23,8 +23,8 @@
         ctrl-shift-l = "move right";
 
         # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-        ctrl-minus = "resize smart -50";
-        ctrl-equal = "resize smart +50";
+        ctrl-shift-minus = "resize smart -50";
+        ctrl-shift-equal = "resize smart +50";
 
         # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
         ctrl-alt-1 = "workspace 1";

@@ -5,13 +5,13 @@
       run = "layout floating";
     }
     {
-      "if" = "test %{app-bundle-id} = org.mozilla.firefox || test %{app-bundle-id} = com.apple.Safari || test %{app-bundle-id} = net.imput.helium";
+      "if" = "test %{app-bundle-id} = org.mozilla.firefox || test %{app-bundle-id} = com.apple.Safari || test %{app-bundle-id} = net.imput.helium || test %{app-bundle-id} = app.zen-browser.zen";
       run = "move-node-to-workspace 1";
     }
-    {
-      "if" = "test %{app-bundle-id} = com.googlecode.iterm2";
-      run = "move-node-to-workspace 2";
-    }
+    # {
+    #   "if" = "test %{app-bundle-id} = com.googlecode.iterm2";
+    #   run = "move-node-to-workspace 2";
+    # }
     {
       "if" = "test %{app-bundle-id} = ru.keepcoder.Telegram || test %{app-bundle-id} = org.whispersystems.signal-desktop";
       run = "move-node-to-workspace 5";

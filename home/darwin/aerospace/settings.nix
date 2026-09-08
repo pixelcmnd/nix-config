@@ -27,4 +27,12 @@
   programs.aerospace.settings.on-focused-monitor-changed = ["move-mouse monitor-lazy-center"];
   programs.aerospace.settings.automatically-unhide-macos-hidden-apps = false;
   programs.aerospace.settings.persistent-workspaces = ["1" "2" "3" "4" "5" "6" "7" "8" "9"];
+  programs.aerospace.settings.gaps = {
+    inner.horizontal = 5;
+    inner.vertical = 5;
+    outer.left = 5;
+    outer.bottom = 5;
+    outer.top = 5;
+    outer.right = 5;
+  };
 }
