@@ -24,13 +24,11 @@
     marksman # Language Server for Markdown
     taplo # TOML toolkit written in Rust
     just # Handy way to save and run project-specific commands
-    qemu # Generic and open source machine emulator and virtualizer
     luarocks # A package manager for Lua modules.
     luajit # High-performance JIT compiler for Lua 5.1
     duckdb # Embeddable SQL OLAP Database Management System
     opencode # AI coding agent built for the terminal
     tree-sitter # Parser generator tool and an incremental parsing library
     biome # Toolchain of the web
-    volta # Hassle-Free JavaScript Tool Manager
   ];
 }
