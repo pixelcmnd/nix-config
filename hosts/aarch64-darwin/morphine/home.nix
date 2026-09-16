@@ -2,6 +2,8 @@
   imports = [
     ../../../home/core
     ../../../home/darwin
+
+    ../../../home/core/desktop-extras.nix
   ];
 
   home.username = myvars.username;

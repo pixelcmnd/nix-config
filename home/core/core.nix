@@ -9,12 +9,8 @@
     imagemagick # Software suite to create, edit, compose, or convert bitmap images
     btop # Monitor of resources
     ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
-    qman # A more modern man page viewer for our terminals
-    fastfetch # Actively maintained, feature-rich and performance oriented, neofetch like system information tool
-    aria2 # Lightweight, multi-protocol, multi-source, command-line download utility
     b3sum # BLAKE3 cryptographic hash function
     neovim # Vim text editor fork focused on extensibility and agility
-    mpv # General-purpose media player, fork of MPlayer and mplayer2
   ];
 
   # A command-line fuzzy finder
