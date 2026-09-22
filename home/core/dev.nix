@@ -27,7 +27,6 @@
     luarocks # A package manager for Lua modules.
     luajit # High-performance JIT compiler for Lua 5.1
     duckdb # Embeddable SQL OLAP Database Management System
-    opencode # AI coding agent built for the terminal
     tree-sitter # Parser generator tool and an incremental parsing library
     biome # Toolchain of the web
   ];
