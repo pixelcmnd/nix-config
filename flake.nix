@@ -9,13 +9,19 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Flake ooutputs
-  outputs = {...} @ inputs: let
-    hosts = import ./hosts {inherit inputs;};
+  outputs = {self, ...} @ inputs: let
+    hosts = import ./hosts {inherit self inputs;};
   in {
     nixosConfigurations = hosts.nixos;
+    darwinConfigurations = hosts.nix-darwin;
     homeConfigurations = hosts.home;
   };
 }
