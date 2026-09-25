@@ -6,6 +6,7 @@
   sharedVars = import ../../../vars.nix;
   hostVars = import ./vars.nix;
   myvars = sharedVars // hostVars;
+  pkgs = inputs.nixpkgs.legacyPackages.${myvars.platform};
 in
   inputs.nix-darwin.lib.darwinSystem {
     system = myvars.platform;
@@ -22,6 +23,8 @@ in
         system.stateVersion = 6;
         system.primaryUser = myvars.username;
         users.users.${myvars.username}.home = "/Users/${myvars.username}";
+
+        fonts.packages = [pkgs.nerd-fonts.jetbrains-mono];
 
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;

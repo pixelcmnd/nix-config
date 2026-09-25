@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./shells
+    ./terminals
 
     ./atuin.nix
     ./core.nix
