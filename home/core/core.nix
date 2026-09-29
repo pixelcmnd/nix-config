@@ -10,7 +10,6 @@
     btop # Monitor of resources
     ffmpeg # Complete, cross-platform solution to record, convert and stream audio and video
     b3sum # BLAKE3 cryptographic hash function
-    neovim # Vim text editor fork focused on extensibility and agility
   ];
 
   # A command-line fuzzy finder

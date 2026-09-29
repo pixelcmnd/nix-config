@@ -8,10 +8,18 @@
     alejandra # Nix formatter
     statix # Lints and suggestions for the nix programming language
 
+    # Java
+    jdt-language-server
+
     # Python
     python3 # High-level dynamically-typed programming language
+    pyright # Python language server
     ruff # Extremely fast Python linter and code formatter
     uv # Extremely fast Python package installer and resolver, written in Rust
+
+    # JavaScript / TypeScript
+    typescript-language-server
+    prettier
 
     # Clang
     # clang # C language family frontend for LLVM
