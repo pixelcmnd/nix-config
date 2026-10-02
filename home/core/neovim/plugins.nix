@@ -1,21 +1,72 @@
 {config, ...}: {
   plugins = {
+    lz-n.enable = true;
     web-devicons.enable = true;
     which-key.enable = true;
     oil = {
       enable = true;
+      lazyLoad.settings.cmd = "Oil";
       settings = {
         delete_to_trash = true;
+        watch_for_changes = true;
         view_options.show_hidden = true;
+        keymaps."<C-r>" = "actions.refresh";
       };
     };
-    telescope.enable = true;
-    gitsigns.enable = true;
+    telescope = {
+      enable = true;
+      lazyLoad.settings.cmd = "Telescope";
+    };
+    gitsigns = {
+      enable = true;
+      lazyLoad.settings.event = ["BufReadPre" "BufNewFile"];
+    };
     lualine.enable = true;
     comment.enable = true;
+    flash = {
+      enable = true;
+      lazyLoad.settings.keys = [
+        {
+          __unkeyed-1 = "s";
+          __unkeyed-2.__raw = ''function() require("flash").jump() end'';
+          __unkeyed-3 = "Jump to text";
+          mode = ["n" "x" "o"];
+        }
+      ];
+    };
+    bufferline = {
+      enable = true;
+      lazyLoad.settings.event = ["BufReadPost" "BufNewFile"];
+      settings.options = {
+        mode = "buffers";
+        always_show_bufferline = false;
+      };
+    };
+    cmp = {
+      enable = true;
+      settings = {
+        preselect = "cmp.PreselectMode.None";
+        snippet.expand = "function(args) vim.snippet.expand(args.body) end";
+        mapping = {
+          "<C-Space>" = "cmp.mapping.complete()";
+          "<C-n>" = "cmp.mapping.select_next_item()";
+          "<C-p>" = "cmp.mapping.select_prev_item()";
+          "<C-e>" = "cmp.mapping.abort()";
+          "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+          "<C-f>" = "cmp.mapping.scroll_docs(4)";
+          "<CR>" = "cmp.mapping.confirm({ select = false })";
+        };
+        sources = [
+          {name = "nvim_lsp";}
+          {name = "path";}
+          {name = "buffer";}
+        ];
+      };
+    };
     snacks = {
       enable = true;
       settings = {
+        notifier.enabled = true;
         dashboard = {
           enabled = true;
           preset = {
@@ -84,6 +135,7 @@
     smart-splits.enable = true;
     treesitter = {
       enable = true;
+      lazyLoad.settings.event = ["BufReadPre" "BufNewFile"];
       grammarPackages = with config.plugins.treesitter.package.builtGrammars; [
         bash
         c

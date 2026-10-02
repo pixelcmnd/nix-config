@@ -21,10 +21,21 @@
     termguicolors = true;
     updatetime = 250;
     completeopt = ["menu" "menuone" "noselect"];
+    spell = true;
     spelllang = ["en" "ru" "es"];
     spellfile = "~/.local/share/nvim/site/spell/custom.utf-8.add";
   };
 
   globals.mapleader = " ";
   globals.maplocalleader = "\\";
+
+  extraConfigLua = ''
+    vim.diagnostic.config({
+      virtual_text = true,
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+    })
+  '';
 }

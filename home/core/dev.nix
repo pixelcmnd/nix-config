@@ -7,6 +7,7 @@
     nixd # Feature-rich Nix language server interoperating with C++ nix
     alejandra # Nix formatter
     statix # Lints and suggestions for the nix programming language
+    codespell # Find common spelling mistakes in source code and prose
 
     # Java
     jdt-language-server
@@ -22,7 +23,7 @@
     prettier
 
     # Clang
-    # clang # C language family frontend for LLVM
+    clang # C/C++ compiler and language-family frontend for LLVM
     clang-tools # Standalone command line tools for C++ development
     lldb # Next-generation high-performance debugger
 
