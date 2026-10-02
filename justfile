@@ -1,109 +1,155 @@
-# just is a command runner, Justfile is very similar to Makefile, but simpler.
+## Daily commands
 
-# Use zsh for shell commands
-# To use this justfile, you need to enter a shell with just & zsh installed:
-#
-#   nix shell nixpkgs#just nixpkgs#zsh
-set shell := ["zsh", "-c"]
+## Run `just` to list the recipes. The default target is `pixel@morphine`;
+## Home Manager is part of that nix-darwin system, so `just darwin-switch` applies both.
+##
+## just fmt                              # Format Nix sources with Alejandra
+## just fmt-check                        # Check formatting without editing
+## just lint                             # Run Statix and deadnix
+## just check                            # Evaluate the Darwin system and flake
+## just darwin-plan                      # Preview required downloads and builds
+## just darwin-build                     # Build into ./result without activation
+## just darwin-diff                      # Build and compare with the running system
+## just darwin-check                     # Build and run activation checks via sudo
+## just darwin-switch                    # Build and activate via sudo
+## just update                           # Update all inputs in flake.lock
+## just update nixpkgs home-manager      # Update only selected inputs
+## just darwin-generations               # List system generations
+## just darwin-rollback                  # Activate the previous generation
+## just darwin-rollback 42               # Activate a specific generation
+## just darwin-generations-clean         # Keep only the current Darwin generation
+## just gc                               # Collect unused paths, keeping generations
+##
 
-############################################################################
-#  Common commands(suitable for all machines)
-############################################################################
+# nix-darwin manages both macOS and Home Manager in this flake.
+# Override the default host with `just host=user@hostname darwin-build`, or pass a
+# target directly: `just darwin-build user@hostname`.
+set shell := ["zsh", "-eu", "-o", "pipefail", "-c"]
+set positional-arguments
+host := "pixel@morphine"
 
-# List all the just commands
-default:
-    @just --list
+# List the available commands.
+default: help
 
-# Update all the flake inputs
-[group('nix')]
-up:
-  nix flake update --commit-lock-file
+[group('meta')]
+help:
+    @just --list --unsorted
 
-# Update specific input
-# Usage: just upp nixpkgs
-[group('nix')]
-upp input:
-  nix flake update {{input}} --commit-lock-file
+# Display the locked flake inputs.
+[group('meta')]
+metadata:
+    nix flake metadata --no-write-lock-file
 
-# List all generations of the system profile
-[group('nix')]
-history:
-  nix profile history --profile /nix/var/nix/profiles/system
+# List the flake outputs.
+[group('meta')]
+show:
+    nix flake show --no-write-lock-file
 
-# Open a nix shell with the flake
-[group('nix')]
+# Explore this configuration interactively (e.g. darwinConfigurations).
+[group('meta')]
 repl:
-  nix repl -f flake:nixpkgs
+    nix repl --no-write-lock-file .
 
-# Garbage collect all unused nix store entries and optimise store
-[group('nix')]
-gc:
-  nix store gc
-  nix store optimise
+# Evaluate the selected system derivation without building or activating it.
+[group('quality')]
+eval target=host:
+    nix eval --raw --no-write-lock-file ".#darwinConfigurations.\"$1\".system.drvPath"
 
-[group('nix')]
+# Evaluate the selected system and check the flake without building it.
+[group('quality')]
+check target=host: (eval target)
+    nix flake check --no-build --no-write-lock-file
+
+# Format the repository's Nix sources using the configured formatter.
+[group('quality')]
 fmt:
-  # format the nix files in this repo
-  find . -path ./.git -prune -o -name '*.nix' -exec alejandra {} +
+    alejandra .
 
-# Show all the auto gc roots in the nix store
-[group('nix')]
-gcroot:
-  ls -al /nix/var/nix/gcroots/auto/ || true
+# Verify that formatting would not change any files; useful in CI and before a commit.
+[group('quality')]
+fmt-check:
+    alejandra --check .
 
-# Verify all the store entries
-# Nix Store can contains corrupted entries if the nix store object has been modified unexpectedly.
-# This command will verify all the store entries,
-# and we need to fix the corrupted entries manually via `sudo nix store delete <store-path-1> <store-path-2> ...`
-[group('nix')]
+# Check Nix style and unused bindings without editing files.
+[group('quality')]
+lint:
+    statix check .
+    deadnix -f
+
+# Preview the downloads and builds needed for the selected system.
+[group('darwin')]
+[macos]
+darwin-plan target=host:
+    darwin-rebuild build --dry-run --no-write-lock-file --flake ".#$1"
+
+# Build macOS and Home Manager into ./result without activating them.
+[group('darwin')]
+[macos]
+darwin-build target=host:
+    darwin-rebuild build --print-build-logs --no-write-lock-file --flake ".#$1"
+
+# Build and compare package versions and sizes against the running system.
+[group('darwin')]
+[macos]
+darwin-diff target=host: (darwin-build target)
+    nix store diff-closures /run/current-system ./result
+
+# Build and run nix-darwin's activation checks (requires administrator access).
+[group('darwin')]
+[macos]
+darwin-check target=host:
+    sudo darwin-rebuild check --print-build-logs --no-write-lock-file --flake ".#$1"
+
+# Build and apply macOS and Home Manager; asks for administrator access.
+[group('darwin')]
+[macos]
+darwin-switch target=host:
+    sudo darwin-rebuild switch --print-build-logs --no-write-lock-file --flake ".#$1"
+
+# List nix-darwin generations for the system profile.
+[group('darwin')]
+[macos]
+darwin-generations:
+    sudo darwin-rebuild --list-generations
+
+# Delete all non-current Darwin generations; removes rollback history.
+# Run `just gc` afterwards to reclaim unreferenced store paths.
+[group('darwin')]
+[macos]
+darwin-generations-clean:
+    sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations old
+
+# Restore the previous generation, or a specific one: `just darwin-rollback 42`.
+[group('darwin')]
+[macos]
+darwin-rollback generation="":
+    if [[ -n "$1" ]]; then \
+        sudo darwin-rebuild switch --switch-generation "$1"; \
+    else \
+        sudo darwin-rebuild switch --rollback; \
+    fi
+
+# Update all inputs, or selected ones: `just update nixpkgs home-manager`.
+[group('inputs')]
+update *inputs:
+    nix flake update "$@"
+
+# Update one input without committing it. Example: `just update-input nixpkgs`.
+[group('inputs')]
+update-input input:
+    nix flake update "$1"
+
+# Collect unused store paths while retaining existing system generations.
+[group('maintenance')]
+gc:
+    nix store gc
+
+# Show store roots that may keep old builds alive (including ./result).
+[group('maintenance')]
+gc-roots:
+    nix-store --gc --print-roots
+
+# Verify store contents; does not repair or delete anything (can be slow).
+[group('maintenance')]
 verify-store:
-  nix store verify --all
-
-# Repair Nix Store Objects
-[group('nix')]
-repair-store *paths:
-  nix store repair {{paths}}
-
-# Update all Nixpkgs inputs
-[group('nix')]
-up-nix:
-  nix flake update --commit-lock-file nixpkgs-stable nixpkgs-master nixpkgs-darwin nixpkgs-patched
-
-# override nixpkgs's commit hash
-[group('nix')]
-override-pkgs hash:
-  nix flake update --commit-lock-file nixpkgs --override-input nixpkgs github:NixOS/nixpkgs/{{hash}}
-
-############################################################################
-#  Darwin related commands
-############################################################################
-
-[macos]
-[group('desktop')]
-brew-upgrade:
-  brew update
-  brew upgrade --yes
-  brew upgrade --cask --greedy
-
-# Reset launchpad to force it to reindex Applications
-[macos]
-[group('desktop')]
-reset-launchpad:
-  defaults write com.apple.dock ResetLaunchPad -bool true
-  killall Dock
-
-# #################################################
-# Other useful commands
-# #################################################
-
-
-# Remove all reflog entries and prune unreachable objects
-[group('git')]
-ggc:
-  git reflog expire --expire-unreachable=now --all
-  git gc --prune=now
-
-# Amend the last commit without changing the commit message
-[group('git')]
-game:
-  git commit --amend -a --no-edit
+    nix store verify --all
