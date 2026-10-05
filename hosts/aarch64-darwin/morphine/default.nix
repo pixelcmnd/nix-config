@@ -24,6 +24,8 @@ in
         system.primaryUser = myvars.username;
         users.users.${myvars.username}.home = "/Users/${myvars.username}";
 
+        security.pam.services.sudo_local.touchIdAuth = true;
+
         fonts.packages = [pkgs.nerd-fonts.jetbrains-mono];
 
         home-manager.useGlobalPkgs = true;
