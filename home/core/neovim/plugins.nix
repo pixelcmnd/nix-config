@@ -3,6 +3,9 @@
     lz-n.enable = true;
     web-devicons.enable = true;
     which-key.enable = true;
+    lualine.enable = true;
+    comment.enable = true;
+
     oil = {
       enable = true;
       lazyLoad.settings.cmd = "Oil";
@@ -13,16 +16,37 @@
         keymaps."<C-r>" = "actions.refresh";
       };
     };
+
+    nvim-tree = {
+      enable = true;
+
+      settings = {
+        view = {
+          side = "left";
+          width = 28;
+          preserve_window_proportions = true;
+        };
+
+        renderer = {
+          group_empty = true;
+        };
+
+        filters = {
+          dotfiles = false;
+        };
+      };
+    };
+
     telescope = {
       enable = true;
       lazyLoad.settings.cmd = "Telescope";
     };
+
     gitsigns = {
       enable = true;
       lazyLoad.settings.event = ["BufReadPre" "BufNewFile"];
     };
-    lualine.enable = true;
-    comment.enable = true;
+
     flash = {
       enable = true;
       lazyLoad.settings.keys = [
@@ -34,6 +58,7 @@
         }
       ];
     };
+
     bufferline = {
       enable = true;
       lazyLoad.settings.event = ["BufReadPost" "BufNewFile"];
@@ -42,6 +67,7 @@
         always_show_bufferline = false;
       };
     };
+
     cmp = {
       enable = true;
       settings = {
@@ -63,6 +89,7 @@
         ];
       };
     };
+
     snacks = {
       enable = true;
       settings = {
@@ -132,6 +159,7 @@
         terminal.enabled = true;
       };
     };
+
     smart-splits.enable = true;
     treesitter = {
       enable = true;

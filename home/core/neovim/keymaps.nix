@@ -44,9 +44,15 @@
     }
     {
       mode = "n";
-      key = "<leader>e";
+      key = "<leader>o";
       action = ":Oil<CR>";
       options.desc = "File explorer";
+    }
+    {
+      mode = "n";
+      key = "<leader>e";
+      action = "<cmd>NvimTreeToggle<CR>";
+      options.desc = "Toggle file tree";
     }
     {
       mode = "n";
