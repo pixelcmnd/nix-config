@@ -142,7 +142,13 @@ update-input input:
 # Collect unused store paths while retaining existing system generations.
 [group('maintenance')]
 gc:
-    nix store gc
+    sudo nix store gc
+
+# Collect garbage and optimise store
+[group('maintenance')]
+gc-optimise:
+    sudo nix store gc
+    sudo nix store optimise
 
 # Show store roots that may keep old builds alive (including ./result).
 [group('maintenance')]
