@@ -6,6 +6,7 @@ result/
 logs/
 core*
 .TODO.md
+TODO.md
 !core/
 !core.nix
 !coredns*
