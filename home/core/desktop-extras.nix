@@ -7,5 +7,7 @@
     mpv # General-purpose media player, fork of MPlayer and mplayer2
     aria2 # Lightweight, multi-protocol, multi-source, command-line download utility
     fastfetch # Actively maintained, feature-rich and performance oriented, neofetch like system information tool
+    bat # Cat(1) clone with syntax highlighting and Git integration
+    pv # Tool for monitoring the progress of data through a pipeline
   ];
 }
