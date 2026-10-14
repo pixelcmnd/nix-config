@@ -16,6 +16,7 @@ in
       {
         nixpkgs.config.allowUnfree = true;
         nix.settings.experimental-features = "nix-command flakes";
+        nix.settings.sandbox = true;
 
         # Set Git commit hash for darwin-version.
         system.configurationRevision = self.rev or self.dirtyRev or null;
