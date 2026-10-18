@@ -1,4 +1,6 @@
-{...}: {
+{pkgs, ...}: {
+  extraPackages = [pkgs.prettier];
+
   plugins = {
     lsp = {
       enable = true;
@@ -113,18 +115,6 @@
 
     conform-nvim = {
       enable = true;
-      lazyLoad.settings.ft = [
-        "nix"
-        "rust"
-        "c"
-        "cpp"
-        "python"
-        "javascript"
-        "javascriptreact"
-        "typescript"
-        "typescriptreact"
-        "markdown"
-      ];
       settings = {
         formatters_by_ft = {
           nix = ["alejandra"];
@@ -132,15 +122,25 @@
           c = ["clang_format"];
           cpp = ["clang_format"];
           python = ["ruff_format"];
-          javascript = ["biome"];
-          javascriptreact = ["biome"];
-          typescript = ["biome"];
-          typescriptreact = ["biome"];
+          javascript = ["prettier"];
+          javascriptreact = ["prettier"];
+          typescript = ["prettier"];
+          typescriptreact = ["prettier"];
+          json = ["prettier"];
+          jsonc = ["prettier"];
+          html = ["prettier"];
+          css = ["prettier"];
+          scss = ["prettier"];
+          less = ["prettier"];
+          vue = ["prettier"];
+          yaml = ["prettier"];
           markdown = ["prettier"];
+          "markdown.mdx" = ["prettier"];
+          graphql = ["prettier"];
         };
         format_on_save = {
-          lsp_fallback = true;
-          timeout_ms = 1000;
+          lsp_format = "fallback";
+          timeout_ms = 3000;
         };
       };
     };

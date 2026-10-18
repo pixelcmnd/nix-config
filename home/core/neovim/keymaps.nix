@@ -86,6 +86,18 @@
     }
     {
       mode = "n";
+      key = "<S-h>";
+      action = "<cmd>bprevious<CR>";
+      options.desc = "Previous file tab (buffer)";
+    }
+    {
+      mode = "n";
+      key = "<S-l>";
+      action = "<cmd>bnext<CR>";
+      options.desc = "Next file tab (buffer)";
+    }
+    {
+      mode = "n";
       key = "<leader>bd";
       action = "<cmd>bdelete<CR>";
       options.desc = "Close buffer";
@@ -95,6 +107,42 @@
       key = "<leader>tt";
       action = "<cmd>lua Snacks.terminal.toggle()<CR>";
       options.desc = "Toggle terminal";
+    }
+    {
+      mode = ["n" "t"];
+      key = "<C-\\>";
+      action = "<cmd>lua Snacks.terminal.toggle()<CR>";
+      options.desc = "Toggle terminal";
+    }
+    {
+      mode = "t";
+      key = "<Esc><Esc>";
+      action = "<C-\\><C-n>";
+      options.desc = "Exit terminal mode";
+    }
+    {
+      mode = "t";
+      key = "<C-h>";
+      action = "<C-\\><C-n><cmd>lua require('smart-splits').move_cursor_left()<CR>";
+      options.desc = "Move to left window";
+    }
+    {
+      mode = "t";
+      key = "<C-j>";
+      action = "<C-\\><C-n><cmd>lua require('smart-splits').move_cursor_down()<CR>";
+      options.desc = "Move to lower window";
+    }
+    {
+      mode = "t";
+      key = "<C-k>";
+      action = "<C-\\><C-n><cmd>lua require('smart-splits').move_cursor_up()<CR>";
+      options.desc = "Move to upper window";
+    }
+    {
+      mode = "t";
+      key = "<C-l>";
+      action = "<C-\\><C-n><cmd>lua require('smart-splits').move_cursor_right()<CR>";
+      options.desc = "Move to right window";
     }
     {
       mode = "n";
@@ -182,6 +230,18 @@
     }
     {
       mode = "n";
+      key = "<leader>th";
+      action = "<cmd>tabprevious<CR>";
+      options.desc = "Previous tab page";
+    }
+    {
+      mode = "n";
+      key = "<leader>tl";
+      action = "<cmd>tabnext<CR>";
+      options.desc = "Next tab page";
+    }
+    {
+      mode = "n";
       key = "]t";
       action = "<cmd>tabnext<CR>";
       options.desc = "Next tab";
@@ -191,6 +251,12 @@
       key = "[t";
       action = "<cmd>tabprevious<CR>";
       options.desc = "Previous tab";
+    }
+    {
+      mode = ["n" "v"];
+      key = "<leader>cf";
+      action = "<cmd>lua require('conform').format({ async = true, lsp_format = 'fallback' })<CR>";
+      options.desc = "Format buffer or selection";
     }
     {
       mode = "n";
