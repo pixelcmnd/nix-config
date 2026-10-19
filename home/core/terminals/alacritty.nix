@@ -12,7 +12,7 @@
         dynamic_padding = true;
         opacity = 0.85;
         blur = true;
-        option_as_alt = "Both";
+        option_as_alt = "OnlyLeft";
       };
 
       font = {
