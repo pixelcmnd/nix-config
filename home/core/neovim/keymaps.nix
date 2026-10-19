@@ -231,26 +231,38 @@
     {
       mode = "n";
       key = "<leader>th";
-      action = "<cmd>tabprevious<CR>";
-      options.desc = "Previous tab page";
+      action = "<cmd>bprevious<CR>";
+      options.desc = "Previous buffer tab";
     }
     {
       mode = "n";
       key = "<leader>tl";
-      action = "<cmd>tabnext<CR>";
-      options.desc = "Next tab page";
+      action = "<cmd>bnext<CR>";
+      options.desc = "Next buffer tab";
+    }
+    {
+      mode = "n";
+      key = "<leader>[";
+      action = "<cmd>bprevious<CR>";
+      options.desc = "Previous buffer tab";
+    }
+    {
+      mode = "n";
+      key = "<leader>]";
+      action = "<cmd>bnext<CR>";
+      options.desc = "Next buffer tab";
     }
     {
       mode = "n";
       key = "]t";
-      action = "<cmd>tabnext<CR>";
-      options.desc = "Next tab";
+      action = "<cmd>bnext<CR>";
+      options.desc = "Next buffer tab";
     }
     {
       mode = "n";
       key = "[t";
-      action = "<cmd>tabprevious<CR>";
-      options.desc = "Previous tab";
+      action = "<cmd>bprevious<CR>";
+      options.desc = "Previous buffer tab";
     }
     {
       mode = ["n" "v"];
