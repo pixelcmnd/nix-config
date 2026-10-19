@@ -158,4 +158,4 @@ gc-roots:
 # Verify store contents; does not repair or delete anything (can be slow).
 [group('maintenance')]
 verify-store:
-    nix store verify --all
+    nix store verify --all --no-trust
