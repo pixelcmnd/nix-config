@@ -42,6 +42,8 @@
         "BufNewFile *.hpp"
         "BufReadPre *.hxx"
         "BufNewFile *.hxx"
+        "BufReadPre *.nim"
+        "BufNewFile *.nim"
       ];
       inlayHints = true;
       capabilities = ''
@@ -59,6 +61,10 @@
         ts_ls.enable = true;
         marksman.enable = true;
         clangd.enable = true;
+        nim_langserver = {
+          enable = true;
+          package = pkgs.nimlangserver;
+        };
         nixd = {
           enable = true;
           settings.nixd = {
@@ -81,6 +87,7 @@
         "typescriptreact"
         "c"
         "cpp"
+        "nim"
         "markdown"
         "text"
       ];
@@ -94,8 +101,29 @@
         typescriptreact = ["biomejs" "codespell"];
         c = ["clangtidy" "codespell"];
         cpp = ["clangtidy" "codespell"];
+        nim = ["nim"];
         markdown = ["codespell"];
         text = ["codespell"];
+      };
+      customLinters.nim = {
+        cmd = "nim";
+        args = ["check" "--hints:off" "$FILENAME"];
+        stdin = false;
+        append_fname = false;
+        stream = "both";
+        ignore_exitcode = true;
+        parser.__raw = ''
+          require("lint.parser").from_pattern(
+            "^(.-)%((%d+), (%d+)%) (%w+): (.+)$",
+            { "file", "lnum", "col", "severity", "message" },
+            {
+              Error = vim.diagnostic.severity.ERROR,
+              Warning = vim.diagnostic.severity.WARN,
+              Hint = vim.diagnostic.severity.HINT,
+              Info = vim.diagnostic.severity.INFO,
+            }
+          )
+        '';
       };
       autoCmd = {
         event = ["BufWritePost"];
@@ -121,6 +149,7 @@
           rust = ["rustfmt"];
           c = ["clang_format"];
           cpp = ["clang_format"];
+          nim = ["nph"];
           python = ["ruff_format"];
           javascript = ["prettier"];
           javascriptreact = ["prettier"];

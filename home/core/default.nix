@@ -9,5 +9,6 @@
     ./git.nix
     ./neovim
     ./zellij.nix
+    ./vscode.nix
   ];
 }

@@ -38,5 +38,20 @@
     duckdb # Embeddable SQL OLAP Database Management System
     tree-sitter # Parser generator tool and an incremental parsing library
     biome # Toolchain of the web
+
+    # Nim
+    nim # Compiler and `nim check` diagnostics
+    nimlangserver # Nim language server
+    nph # Opinionated Nim formatter
   ];
+
+  # Use LLVM's Clang as Nim's default backend on every Home Manager host.
+  # Nim loads this user config after its Nixpkgs-provided defaults.
+  home.file.".config/nim/nim.cfg".text = ''
+    cc = clang
+    clang.exe = "${pkgs.clang}/bin/clang"
+    clang.linkerexe = "${pkgs.clang}/bin/clang"
+    clang.cpp.exe = "${pkgs.clang}/bin/clang++"
+    clang.cpp.linkerexe = "${pkgs.clang}/bin/clang++"
+  '';
 }
