@@ -16,9 +16,14 @@
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvim-anywhere = {
+      url = "github:pixelcmnd/nvim-anywhere";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  # Flake ooutputs
+  # Flake outputs
   outputs = {self, ...} @ inputs: let
     hosts = import ./hosts {inherit self inputs;};
   in {

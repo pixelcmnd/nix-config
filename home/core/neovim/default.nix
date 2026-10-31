@@ -1,5 +1,8 @@
 {inputs, ...}: {
-  imports = [inputs.nixvim.homeModules.nixvim];
+  imports = [
+    inputs.nixvim.homeModules.nixvim
+    inputs.nvim-anywhere.homeManagerModules.default
+  ];
 
   programs.nixvim = {
     enable = true;
@@ -13,4 +16,6 @@
       ./autocmds.nix
     ];
   };
+
+  programs.nvim-anywhere.enable = true;
 }

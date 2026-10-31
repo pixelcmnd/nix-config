@@ -1,4 +1,19 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  lintFiletypes = [
+    "nix"
+    "rust"
+    "python"
+    "javascript"
+    "javascriptreact"
+    "typescript"
+    "typescriptreact"
+    "c"
+    "cpp"
+    "nim"
+    "markdown"
+    "text"
+  ];
+in {
   extraPackages = [pkgs.prettier];
 
   plugins = {
@@ -77,20 +92,7 @@
 
     lint = {
       enable = true;
-      lazyLoad.settings.ft = [
-        "nix"
-        "rust"
-        "python"
-        "javascript"
-        "javascriptreact"
-        "typescript"
-        "typescriptreact"
-        "c"
-        "cpp"
-        "nim"
-        "markdown"
-        "text"
-      ];
+      lazyLoad.settings.ft = lintFiletypes;
       lintersByFt = {
         nix = ["statix" "codespell"];
         rust = ["clippy" "codespell"];
@@ -129,6 +131,10 @@
         event = ["BufWritePost"];
         callback.__raw = ''
           function()
+            if not vim.tbl_contains(vim.json.decode('${builtins.toJSON lintFiletypes}'), vim.bo.filetype) then
+              return
+            end
+
             -- Clippy needs a Cargo workspace; skip standalone Rust files.
             if vim.bo.filetype == "rust" and not vim.fs.root(0, { "Cargo.toml" }) then
               require("lint").try_lint("codespell")
