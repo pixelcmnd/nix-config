@@ -7,6 +7,7 @@
     [
       audacity
       keepassxc
+      neovide
       obsidian
       wireshark
       qbittorrent
