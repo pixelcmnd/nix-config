@@ -23,7 +23,10 @@ in
 
         system.stateVersion = 6;
         system.primaryUser = myvars.username;
-        users.users.${myvars.username}.home = "/Users/${myvars.username}";
+        users.users.${myvars.username} = {
+          home = "/Users/${myvars.username}";
+          shell = pkgs.zsh;
+        };
 
         security.pam.services.sudo_local.touchIdAuth = true;
 
