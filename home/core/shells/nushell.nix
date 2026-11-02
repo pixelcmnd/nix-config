@@ -14,6 +14,23 @@
       max_results = 200;
     };
     completions.algorithm = "fuzzy";
+
+    keybindings = [
+      {
+        name = "search_history";
+        modifier = "control";
+        keycode = "char_r";
+        mode = ["vi_insert" "vi_normal"];
+        event.send = "searchhistory";
+      }
+      {
+        name = "accept_history_hint";
+        modifier = "control";
+        keycode = "char_n";
+        mode = "vi_insert";
+        event.send = "historyhintcomplete";
+      }
+    ];
   };
 
   programs.nushell.plugins = [
