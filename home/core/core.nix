@@ -15,6 +15,8 @@
   # A command-line fuzzy finder
   programs.fzf = {
     enable = true;
+    # fzf's Nushell completer uses the deprecated positional completer API.
+    enableNushellIntegration = false;
     historyWidget.command = "";
   };
 
