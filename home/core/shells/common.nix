@@ -64,6 +64,7 @@ in {
     $env.PATH = (${lib.hm.nushell.toNushell {} shellPaths} | append $env.PATH | uniq)
   '';
 
+  programs.bash.shellAliases = commonAliases;
   programs.zsh.shellAliases = commonAliases;
   programs.nushell.shellAliases = commonAliases;
 }
