@@ -1,7 +1,8 @@
-{...}: {
+{pkgs, ...}: {
   programs.zellij = {
     enable = true;
     settings = {
+      default_shell = "${pkgs.nushell}/bin/nu";
       theme = "gruvbox-dark";
       show_startup_tips = false;
     };
