@@ -28,6 +28,8 @@
     lldb # Next-generation high-performance debugger
 
     # Misc
+    opencode # AI coding agent
+    pv # Tool for monitoring the progress of data through a pipeline
     rustup # Rust toolchain installer
     go # Go Programming language
     marksman # Language Server for Markdown
