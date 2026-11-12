@@ -12,6 +12,7 @@
     "nim"
     "markdown"
     "text"
+    "slint"
   ];
 in {
   extraPackages = [pkgs.prettier];
@@ -59,6 +60,8 @@ in {
         "BufNewFile *.hxx"
         "BufReadPre *.nim"
         "BufNewFile *.nim"
+        "BufReadPre *.slint"
+        "BufNewFile *.slint"
       ];
       inlayHints = true;
       capabilities = ''
@@ -80,6 +83,7 @@ in {
           enable = true;
           package = pkgs.nimlangserver;
         };
+        slint_lsp.enable = true;
         nixd = {
           enable = true;
           settings.nixd = {

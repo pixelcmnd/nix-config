@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   programs.vscode = {
     enable = true;
     profiles.default = {
@@ -32,6 +37,7 @@
         "editor.cursorStyle" = "block";
         "editor.formatOnSave" = true;
         "editor.formatOnPaste" = true;
+        "editor.lineNumbers" = "relative";
         "workbench.preferredDarkColorTheme" = "Gruvbox Dark Medium";
         "workbench.preferredHighContrastColorTheme" = "Gruvbox Dark Hard";
         "workbench.preferredHighContrastLightColorTheme" = "Gruvbox Light Hard";
@@ -42,8 +48,9 @@
         "cSpell.enabled" = true;
         "cSpell.language" = "en,ru";
         "extensions.experimental.affinity"."asvetliakov.vscode-neovim" = 1;
-        "nim.lintOnSave" = true;
         "nim.formatOnSave" = true;
+        "vscode-neovim.neovimExecutablePaths.darwin" = lib.getExe' config.programs.nixvim.build.package "nvim";
+        "todo-tree.ripgrep.ripgrep" = lib.getExe' pkgs.ripgrep "rg";
       };
     };
   };

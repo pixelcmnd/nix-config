@@ -8,7 +8,7 @@
   programs.zsh.initContent = lib.mkMerge [
     (lib.mkBefore ''
       # Use Nushell for interactive login sessions while retaining zsh as the login shell.
-      if [[ -o login && -o interactive ]]; then
+      if [[ -o login && -o interactive && -z "$VSCODE_RESOLVING_ENVIRONMENT" ]]; then
         exec ${pkgs.nushell}/bin/nu
       fi
     '')
