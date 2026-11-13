@@ -5,15 +5,7 @@
 }: {
   programs.zsh.enable = true;
 
-  programs.zsh.initContent = lib.mkMerge [
-    (lib.mkBefore ''
-      # Use Nushell for interactive login sessions while retaining zsh as the login shell.
-      if [[ -o login && -o interactive && -z "$VSCODE_RESOLVING_ENVIRONMENT" ]]; then
-        exec ${pkgs.nushell}/bin/nu
-      fi
-    '')
-
-    (lib.mkAfter ''
+  programs.zsh.initContent = lib.mkAfter ''
       # Vi key bindings
       bindkey -v
       KEYTIMEOUT=1
@@ -80,8 +72,7 @@
       }
       zle -N zle-keymap-select
       zle -N zle-line-init
-    '')
-  ];
+  '';
 
   programs.zsh.plugins = [
     {

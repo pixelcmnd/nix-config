@@ -2,7 +2,7 @@
   programs.zellij = {
     enable = true;
     settings = {
-      default_shell = "${pkgs.nushell}/bin/nu";
+      default_shell = "${pkgs.zsh}/bin/zsh";
       theme = "gruvbox-dark";
       show_startup_tips = false;
     };
