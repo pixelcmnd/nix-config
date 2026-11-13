@@ -1,4 +1,7 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  ...
+}: let
   lintFiletypes = [
     "nix"
     "rust"
@@ -15,171 +18,169 @@
     "slint"
   ];
 in {
-  extraPackages = [pkgs.prettier];
+  config = {
+    extraPackages = [pkgs.nixfmt pkgs.prettier];
 
-  plugins = {
-    lsp = {
-      enable = true;
-      # Load LSP configuration just before reading a supported source file so
-      # its FileType hook is ready for the first buffer. Servers still attach
-      # only to the filetypes they support.
-      lazyLoad.settings.event = [
-        "BufReadPre *.nix"
-        "BufNewFile *.nix"
-        "BufReadPre *.rs"
-        "BufNewFile *.rs"
-        "BufReadPre *.java"
-        "BufNewFile *.java"
-        "BufReadPre *.py"
-        "BufNewFile *.py"
-        "BufReadPre *.js"
-        "BufNewFile *.js"
-        "BufReadPre *.jsx"
-        "BufNewFile *.jsx"
-        "BufReadPre *.ts"
-        "BufNewFile *.ts"
-        "BufReadPre *.tsx"
-        "BufNewFile *.tsx"
-        "BufReadPre *.md"
-        "BufNewFile *.md"
-        "BufReadPre *.c"
-        "BufNewFile *.c"
-        "BufReadPre *.h"
-        "BufNewFile *.h"
-        "BufReadPre *.cc"
-        "BufNewFile *.cc"
-        "BufReadPre *.cpp"
-        "BufNewFile *.cpp"
-        "BufReadPre *.cxx"
-        "BufNewFile *.cxx"
-        "BufReadPre *.hh"
-        "BufNewFile *.hh"
-        "BufReadPre *.hpp"
-        "BufNewFile *.hpp"
-        "BufReadPre *.hxx"
-        "BufNewFile *.hxx"
-        "BufReadPre *.nim"
-        "BufNewFile *.nim"
-        "BufReadPre *.slint"
-        "BufNewFile *.slint"
-      ];
-      inlayHints = true;
-      capabilities = ''
-        capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-      '';
-      servers = {
-        rust_analyzer = {
-          enable = true;
-          installCargo = false;
-          installRustc = false;
-          settings."rust-analyzer".inlayHints.typeHints.enable = true;
-        };
-        jdtls.enable = true;
-        pyright.enable = true;
-        ts_ls.enable = true;
-        marksman.enable = true;
-        clangd.enable = true;
-        nim_langserver = {
-          enable = true;
-          package = pkgs.nimlangserver;
-        };
-        slint_lsp.enable = true;
-        nixd = {
-          enable = true;
-          settings.nixd = {
-            nixpkgs.expr = "import <nixpkgs> { }";
-            formatting.command = ["alejandra"];
+    plugins = {
+      lsp = {
+        enable = true;
+        # Load LSP configuration just before reading a supported source file so
+        # its FileType hook is ready for the first buffer. Servers still attach
+        # only to the filetypes they support.
+        lazyLoad.settings.event = [
+          "BufReadPre *.nix"
+          "BufNewFile *.nix"
+          "BufReadPre *.rs"
+          "BufNewFile *.rs"
+          "BufReadPre *.java"
+          "BufNewFile *.java"
+          "BufReadPre *.py"
+          "BufNewFile *.py"
+          "BufReadPre *.js"
+          "BufNewFile *.js"
+          "BufReadPre *.jsx"
+          "BufNewFile *.jsx"
+          "BufReadPre *.ts"
+          "BufNewFile *.ts"
+          "BufReadPre *.tsx"
+          "BufNewFile *.tsx"
+          "BufReadPre *.md"
+          "BufNewFile *.md"
+          "BufReadPre *.c"
+          "BufNewFile *.c"
+          "BufReadPre *.h"
+          "BufNewFile *.h"
+          "BufReadPre *.cc"
+          "BufNewFile *.cc"
+          "BufReadPre *.cpp"
+          "BufNewFile *.cpp"
+          "BufReadPre *.cxx"
+          "BufNewFile *.cxx"
+          "BufReadPre *.hh"
+          "BufNewFile *.hh"
+          "BufReadPre *.hpp"
+          "BufNewFile *.hpp"
+          "BufReadPre *.hxx"
+          "BufNewFile *.hxx"
+          "BufReadPre *.nim"
+          "BufNewFile *.nim"
+          "BufReadPre *.slint"
+          "BufNewFile *.slint"
+        ];
+        inlayHints = true;
+        capabilities = ''
+          capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+        '';
+        servers = {
+          rust_analyzer = {
+            enable = true;
+            installCargo = false;
+            installRustc = false;
+            settings."rust-analyzer".inlayHints.typeHints.enable = true;
+          };
+          jdtls.enable = true;
+          pyright.enable = true;
+          ts_ls.enable = true;
+          marksman.enable = true;
+          clangd.enable = true;
+          nim_langserver = {
+            enable = true;
+            package = pkgs.nimlangserver;
+          };
+          slint_lsp.enable = true;
+          nixd = {
+            enable = true;
+            settings.nixd = {
+              nixpkgs.expr = "import <nixpkgs> { }";
+              formatting.command = ["nixfmt"];
+            };
           };
         };
       };
-    };
 
-    lint = {
-      enable = true;
-      lazyLoad.settings.ft = lintFiletypes;
-      lintersByFt = {
-        nix = ["statix" "codespell"];
-        rust = ["clippy" "codespell"];
-        python = ["ruff" "codespell"];
-        javascript = ["biomejs" "codespell"];
-        javascriptreact = ["biomejs" "codespell"];
-        typescript = ["biomejs" "codespell"];
-        typescriptreact = ["biomejs" "codespell"];
-        c = ["clangtidy" "codespell"];
-        cpp = ["clangtidy" "codespell"];
-        nim = ["nim"];
-        markdown = ["codespell"];
-        text = ["codespell"];
-      };
-      customLinters.nim = {
-        cmd = "nim";
-        args = ["check" "--hints:off" "$FILENAME"];
-        stdin = false;
-        append_fname = false;
-        stream = "both";
-        ignore_exitcode = true;
-        parser.__raw = ''
-          require("lint.parser").from_pattern(
-            "^(.-)%((%d+), (%d+)%) (%w+): (.+)$",
-            { "file", "lnum", "col", "severity", "message" },
-            {
-              Error = vim.diagnostic.severity.ERROR,
-              Warning = vim.diagnostic.severity.WARN,
-              Hint = vim.diagnostic.severity.HINT,
-              Info = vim.diagnostic.severity.INFO,
-            }
-          )
-        '';
-      };
-      autoCmd = {
-        event = ["BufWritePost"];
-        callback.__raw = ''
-          function()
-            if not vim.tbl_contains(vim.json.decode('${builtins.toJSON lintFiletypes}'), vim.bo.filetype) then
-              return
-            end
-
-            -- Clippy needs a Cargo workspace; skip standalone Rust files.
-            if vim.bo.filetype == "rust" and not vim.fs.root(0, { "Cargo.toml" }) then
-              require("lint").try_lint("codespell")
-              return
-            end
-
-            require("lint").try_lint()
-          end
-        '';
-      };
-    };
-
-    conform-nvim = {
-      enable = true;
-      settings = {
-        formatters_by_ft = {
-          nix = ["alejandra"];
-          rust = ["rustfmt"];
-          c = ["clang_format"];
-          cpp = ["clang_format"];
-          nim = ["nph"];
-          python = ["ruff_format"];
-          javascript = ["prettier"];
-          javascriptreact = ["prettier"];
-          typescript = ["prettier"];
-          typescriptreact = ["prettier"];
-          json = ["prettier"];
-          jsonc = ["prettier"];
-          html = ["prettier"];
-          css = ["prettier"];
-          scss = ["prettier"];
-          less = ["prettier"];
-          vue = ["prettier"];
-          yaml = ["prettier"];
-          markdown = ["prettier"];
-          "markdown.mdx" = ["prettier"];
-          graphql = ["prettier"];
+      lint = {
+        enable = true;
+        lazyLoad.settings.ft = lintFiletypes;
+        lintersByFt = {
+          nix = ["statix" "codespell"];
+          rust = ["clippy" "codespell"];
+          python = ["ruff" "codespell"];
+          javascript = ["biomejs" "codespell"];
+          javascriptreact = ["biomejs" "codespell"];
+          typescript = ["biomejs" "codespell"];
+          typescriptreact = ["biomejs" "codespell"];
+          c = ["clangtidy" "codespell"];
+          cpp = ["clangtidy" "codespell"];
+          nim = ["nim"];
+          markdown = ["codespell"];
+          text = ["codespell"];
         };
-        format_on_save = {
-          lsp_format = "fallback";
-          timeout_ms = 3000;
+        customLinters.nim = {
+          cmd = "nim";
+          args = ["check" "--hints:off" "$FILENAME"];
+          stdin = false;
+          append_fname = false;
+          stream = "both";
+          ignore_exitcode = true;
+          parser.__raw = ''
+            require("lint.parser").from_pattern(
+              "^(.-)%((%d+), (%d+)%) (%w+): (.+)$",
+              { "file", "lnum", "col", "severity", "message" },
+              {
+                Error = vim.diagnostic.severity.ERROR,
+                Warning = vim.diagnostic.severity.WARN,
+                Hint = vim.diagnostic.severity.HINT,
+                Info = vim.diagnostic.severity.INFO,
+              }
+            )
+          '';
+        };
+        autoCmd = {
+          event = ["BufWritePost"];
+          callback.__raw = ''
+            function()
+              if not vim.tbl_contains(vim.json.decode('${builtins.toJSON lintFiletypes}'), vim.bo.filetype) then
+                return
+              end
+
+              -- Clippy needs a Cargo workspace; skip standalone Rust files.
+              if vim.bo.filetype == "rust" and not vim.fs.root(0, { "Cargo.toml" }) then
+                require("lint").try_lint("codespell")
+                return
+              end
+
+              require("lint").try_lint()
+            end
+          '';
+        };
+      };
+
+      conform-nvim = {
+        enable = true;
+        settings = {
+          formatters_by_ft = {
+            nix = ["nixfmt"];
+            rust = ["rustfmt"];
+            c = ["clang_format"];
+            cpp = ["clang_format"];
+            nim = ["nph"];
+            python = ["ruff_format"];
+            javascript = ["prettier"];
+            javascriptreact = ["prettier"];
+            typescript = ["prettier"];
+            typescriptreact = ["prettier"];
+            json = ["prettier"];
+            jsonc = ["prettier"];
+            html = ["prettier"];
+            css = ["prettier"];
+            scss = ["prettier"];
+            less = ["prettier"];
+            vue = ["prettier"];
+            yaml = ["prettier"];
+            markdown = ["prettier"];
+            "markdown.mdx" = ["prettier"];
+            graphql = ["prettier"];
+          };
         };
       };
     };

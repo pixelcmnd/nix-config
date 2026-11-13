@@ -5,7 +5,7 @@
     nix-melt # A TUI flake.lock viewer https://github.com/nix-community/nix-melt
     deadnix # Find and remove unused code in .nix source files
     nixd # Feature-rich Nix language server interoperating with C++ nix
-    alejandra # Nix formatter
+    nixfmt # Nix formatter
     statix # Lints and suggestions for the nix programming language
     codespell # Find common spelling mistakes in source code and prose
 
