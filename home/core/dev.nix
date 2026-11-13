@@ -6,6 +6,7 @@
     deadnix # Find and remove unused code in .nix source files
     nixd # Feature-rich Nix language server interoperating with C++ nix
     nixfmt # Nix formatter
+    nixfmt-tree # Format all Nix files in a project with treefmt
     statix # Lints and suggestions for the nix programming language
     codespell # Find common spelling mistakes in source code and prose
 
