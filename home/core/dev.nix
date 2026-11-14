@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # dev utils / compilers / programming langs etc.
   home.packages = with pkgs; [
     # nix related

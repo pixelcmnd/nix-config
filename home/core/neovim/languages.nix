@@ -1,7 +1,8 @@
 {
   pkgs,
   ...
-}: let
+}:
+let
   lintFiletypes = [
     "nix"
     "rust"
@@ -17,9 +18,13 @@
     "text"
     "slint"
   ];
-in {
+in
+{
   config = {
-    extraPackages = [pkgs.nixfmt pkgs.prettier];
+    extraPackages = [
+      pkgs.nixfmt
+      pkgs.prettier
+    ];
 
     plugins = {
       lsp = {
@@ -92,7 +97,7 @@ in {
             enable = true;
             settings.nixd = {
               nixpkgs.expr = "import <nixpkgs> { }";
-              formatting.command = ["nixfmt"];
+              formatting.command = [ "nixfmt" ];
             };
           };
         };
@@ -102,22 +107,53 @@ in {
         enable = true;
         lazyLoad.settings.ft = lintFiletypes;
         lintersByFt = {
-          nix = ["statix" "codespell"];
-          rust = ["clippy" "codespell"];
-          python = ["ruff" "codespell"];
-          javascript = ["biomejs" "codespell"];
-          javascriptreact = ["biomejs" "codespell"];
-          typescript = ["biomejs" "codespell"];
-          typescriptreact = ["biomejs" "codespell"];
-          c = ["clangtidy" "codespell"];
-          cpp = ["clangtidy" "codespell"];
-          nim = ["nim"];
-          markdown = ["codespell"];
-          text = ["codespell"];
+          nix = [
+            "statix"
+            "codespell"
+          ];
+          rust = [
+            "clippy"
+            "codespell"
+          ];
+          python = [
+            "ruff"
+            "codespell"
+          ];
+          javascript = [
+            "biomejs"
+            "codespell"
+          ];
+          javascriptreact = [
+            "biomejs"
+            "codespell"
+          ];
+          typescript = [
+            "biomejs"
+            "codespell"
+          ];
+          typescriptreact = [
+            "biomejs"
+            "codespell"
+          ];
+          c = [
+            "clangtidy"
+            "codespell"
+          ];
+          cpp = [
+            "clangtidy"
+            "codespell"
+          ];
+          nim = [ "nim" ];
+          markdown = [ "codespell" ];
+          text = [ "codespell" ];
         };
         customLinters.nim = {
           cmd = "nim";
-          args = ["check" "--hints:off" "$FILENAME"];
+          args = [
+            "check"
+            "--hints:off"
+            "$FILENAME"
+          ];
           stdin = false;
           append_fname = false;
           stream = "both";
@@ -136,7 +172,7 @@ in {
           '';
         };
         autoCmd = {
-          event = ["BufWritePost"];
+          event = [ "BufWritePost" ];
           callback.__raw = ''
             function()
               if not vim.tbl_contains(vim.json.decode('${builtins.toJSON lintFiletypes}'), vim.bo.filetype) then
@@ -159,27 +195,27 @@ in {
         enable = true;
         settings = {
           formatters_by_ft = {
-            nix = ["nixfmt"];
-            rust = ["rustfmt"];
-            c = ["clang_format"];
-            cpp = ["clang_format"];
-            nim = ["nph"];
-            python = ["ruff_format"];
-            javascript = ["prettier"];
-            javascriptreact = ["prettier"];
-            typescript = ["prettier"];
-            typescriptreact = ["prettier"];
-            json = ["prettier"];
-            jsonc = ["prettier"];
-            html = ["prettier"];
-            css = ["prettier"];
-            scss = ["prettier"];
-            less = ["prettier"];
-            vue = ["prettier"];
-            yaml = ["prettier"];
-            markdown = ["prettier"];
-            "markdown.mdx" = ["prettier"];
-            graphql = ["prettier"];
+            nix = [ "nixfmt" ];
+            rust = [ "rustfmt" ];
+            c = [ "clang_format" ];
+            cpp = [ "clang_format" ];
+            nim = [ "nph" ];
+            python = [ "ruff_format" ];
+            javascript = [ "prettier" ];
+            javascriptreact = [ "prettier" ];
+            typescript = [ "prettier" ];
+            typescriptreact = [ "prettier" ];
+            json = [ "prettier" ];
+            jsonc = [ "prettier" ];
+            html = [ "prettier" ];
+            css = [ "prettier" ];
+            scss = [ "prettier" ];
+            less = [ "prettier" ];
+            vue = [ "prettier" ];
+            yaml = [ "prettier" ];
+            markdown = [ "prettier" ];
+            "markdown.mdx" = [ "prettier" ];
+            graphql = [ "prettier" ];
           };
         };
       };

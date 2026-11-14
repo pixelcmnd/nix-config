@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   programs.vscode = {
     enable = true;
     profiles.default = {
@@ -49,7 +50,8 @@
         "cSpell.language" = "en,ru";
         "extensions.experimental.affinity"."asvetliakov.vscode-neovim" = 1;
         "nim.formatOnSave" = true;
-        "vscode-neovim.neovimExecutablePaths.darwin" = lib.getExe' config.programs.nixvim.build.package "nvim";
+        "vscode-neovim.neovimExecutablePaths.darwin" =
+          lib.getExe' config.programs.nixvim.build.package "nvim";
         "todo-tree.ripgrep.ripgrep" = lib.getExe' pkgs.ripgrep "rg";
       };
     };

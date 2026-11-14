@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.nushell.enable = true;
 
   programs.nushell.settings = {
@@ -20,7 +20,10 @@
         name = "search_history";
         modifier = "control";
         keycode = "char_r";
-        mode = ["vi_insert" "vi_normal"];
+        mode = [
+          "vi_insert"
+          "vi_normal"
+        ];
         event.send = "searchhistory";
       }
       {

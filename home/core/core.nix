@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # CLI / TUI tools
   home.packages = with pkgs; [
     curl # Command line tool for transferring files with URL syntax

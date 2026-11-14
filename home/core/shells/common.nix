@@ -3,19 +3,19 @@
   lib,
   pkgs,
   ...
-}: let
-  shellPaths =
-    lib.optionals pkgs.stdenv.hostPlatform.isDarwin ["/opt/homebrew/bin"]
-    ++ [
-      "${config.home.homeDirectory}/.volta/bin"
-      "${config.home.homeDirectory}/.local/bin"
-      "${config.home.homeDirectory}/.cargo/bin"
-    ];
+}:
+let
+  shellPaths = lib.optionals pkgs.stdenv.hostPlatform.isDarwin [ "/opt/homebrew/bin" ] ++ [
+    "${config.home.homeDirectory}/.volta/bin"
+    "${config.home.homeDirectory}/.local/bin"
+    "${config.home.homeDirectory}/.cargo/bin"
+  ];
 
   sshAuthSock =
-    if pkgs.stdenv.hostPlatform.isDarwin
-    then "${config.home.homeDirectory}/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"
-    else "${config.home.homeDirectory}/.bitwarden-ssh-agent.sock";
+    if pkgs.stdenv.hostPlatform.isDarwin then
+      "${config.home.homeDirectory}/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"
+    else
+      "${config.home.homeDirectory}/.bitwarden-ssh-agent.sock";
 
   commonAliases = {
     # Common use
@@ -46,7 +46,8 @@
     nd = "nix develop";
     nb = "nix build";
   };
-in {
+in
+{
   home.sessionVariables.SSH_AUTH_SOCK = sshAuthSock;
   programs.nushell.environmentVariables.SSH_AUTH_SOCK = sshAuthSock;
 
@@ -61,7 +62,7 @@ in {
   '';
 
   programs.nushell.extraEnv = ''
-    $env.PATH = (${lib.hm.nushell.toNushell {} shellPaths} | append $env.PATH | uniq)
+    $env.PATH = (${lib.hm.nushell.toNushell { } shellPaths} | append $env.PATH | uniq)
   '';
 
   programs.bash.shellAliases = commonAliases;

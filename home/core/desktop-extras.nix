@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     # cli/tui tools
     p7zip-rar # New p7zip fork with additional codecs and improvements

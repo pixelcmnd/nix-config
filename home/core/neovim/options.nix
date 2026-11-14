@@ -1,5 +1,5 @@
-{pkgs, ...}: {
-  extraPlugins = [pkgs.vimPlugins.gruvbox-nvim];
+{ pkgs, ... }: {
+  extraPlugins = [ pkgs.vimPlugins.gruvbox-nvim ];
 
   colorschemes.gruvbox.enable = true;
 
@@ -20,9 +20,17 @@
     splitbelow = true;
     termguicolors = true;
     updatetime = 250;
-    completeopt = ["menu" "menuone" "noselect"];
+    completeopt = [
+      "menu"
+      "menuone"
+      "noselect"
+    ];
     spell = true;
-    spelllang = ["en" "ru" "es"];
+    spelllang = [
+      "en"
+      "ru"
+      "es"
+    ];
     spellfile = "~/.local/share/nvim/site/spell/custom.utf-8.add";
   };
 

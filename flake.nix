@@ -24,13 +24,16 @@
   };
 
   # Flake outputs
-  outputs = {self, ...} @ inputs: let
-    hosts = import ./hosts {inherit self inputs;};
-  in {
-    nixosConfigurations = hosts.nixos;
-    darwinConfigurations = hosts.nix-darwin;
-    homeConfigurations = hosts.home;
+  outputs =
+    { self, ... }@inputs:
+    let
+      hosts = import ./hosts { inherit self inputs; };
+    in
+    {
+      nixosConfigurations = hosts.nixos;
+      darwinConfigurations = hosts.nix-darwin;
+      homeConfigurations = hosts.home;
 
-    formatter.aarch64-darwin = inputs.nixpkgs.legacyPackages.aarch64-darwin.nixfmt-tree;
-  };
+      formatter.aarch64-darwin = inputs.nixpkgs.legacyPackages.aarch64-darwin.nixfmt-tree;
+    };
 }

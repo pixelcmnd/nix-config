@@ -1,4 +1,4 @@
-{config, ...}: {
+{ config, ... }: {
   plugins = {
     lz-n.enable = true;
     web-devicons.enable = true;
@@ -44,7 +44,10 @@
 
     gitsigns = {
       enable = true;
-      lazyLoad.settings.event = ["BufReadPre" "BufNewFile"];
+      lazyLoad.settings.event = [
+        "BufReadPre"
+        "BufNewFile"
+      ];
     };
 
     flash = {
@@ -54,14 +57,21 @@
           __unkeyed-1 = "s";
           __unkeyed-2.__raw = ''function() require("flash").jump() end'';
           __unkeyed-3 = "Jump to text";
-          mode = ["n" "x" "o"];
+          mode = [
+            "n"
+            "x"
+            "o"
+          ];
         }
       ];
     };
 
     bufferline = {
       enable = true;
-      lazyLoad.settings.event = ["BufReadPost" "BufNewFile"];
+      lazyLoad.settings.event = [
+        "BufReadPost"
+        "BufNewFile"
+      ];
       settings.options = {
         mode = "buffers";
         always_show_bufferline = false;
@@ -83,9 +93,9 @@
           "<CR>" = "cmp.mapping.confirm({ select = false })";
         };
         sources = [
-          {name = "nvim_lsp";}
-          {name = "path";}
-          {name = "buffer";}
+          { name = "nvim_lsp"; }
+          { name = "path"; }
+          { name = "buffer"; }
         ];
       };
     };
@@ -144,7 +154,7 @@
             ];
           };
           sections = [
-            {section = "header";}
+            { section = "header"; }
             {
               section = "keys";
               gap = 1;
@@ -163,7 +173,10 @@
     smart-splits.enable = true;
     treesitter = {
       enable = true;
-      lazyLoad.settings.event = ["BufReadPre" "BufNewFile"];
+      lazyLoad.settings.event = [
+        "BufReadPre"
+        "BufNewFile"
+      ];
       grammarPackages = with config.plugins.treesitter.package.builtGrammars; [
         bash
         c

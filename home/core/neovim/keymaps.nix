@@ -109,7 +109,10 @@
       options.desc = "Toggle terminal";
     }
     {
-      mode = ["n" "t"];
+      mode = [
+        "n"
+        "t"
+      ];
       key = "<C-\\>";
       action = "<cmd>lua Snacks.terminal.toggle()<CR>";
       options.desc = "Toggle terminal";
@@ -265,7 +268,10 @@
       options.desc = "Previous buffer tab";
     }
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<leader>cf";
       action = "<cmd>lua require('conform').format({ async = true, lsp_format = 'fallback' })<CR>";
       options.desc = "Format buffer or selection";
