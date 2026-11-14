@@ -45,6 +45,24 @@ in
   programs.git = {
     enable = true;
     lfs.enable = true;
+    ignores = [
+      # macOS
+      ".DS_Store"
+      ".AppleDouble"
+      ".LSOverride"
+      "._*"
+      ".Spotlight-V100"
+      ".Trashes"
+      ".fseventsd"
+      "Icon?"
+
+      # Editor temporary files
+      "*~"
+      "*.swp"
+      "*.swo"
+      ".#*"
+      "#*#"
+    ];
 
     signing = {
       key = sshSigningKey;
@@ -74,8 +92,6 @@ in
       push.autoSetupRemote = true;
       pull.rebase = true;
       log.date = "iso"; # use iso format for date
-
-      # replace https with ssh
       url = {
         "ssh://git@github.com/p1x3lid" = {
           insteadOf = "https://github.com/p1x3lid";
