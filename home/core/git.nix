@@ -4,6 +4,9 @@
   myvars,
   ...
 }:
+let
+  sshSigningKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKgFCAPwVhm/Xly252wSaFaqyR2Ci9qPnhL1/CjfZzX/";
+in
 {
   # `programs.git` will generate the config file: ~/.config/git/config
   # to make git use this config file, `~/.gitconfig` should not exist!
@@ -11,6 +14,10 @@
   #    https://git-scm.com/docs/git-config#Documentation/git-config.txt---global
   home.activation.removeExistingGitconfig = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
     rm -f ${config.home.homeDirectory}/.gitconfig
+  '';
+
+  home.file.".config/git/allowed_signers".text = ''
+    ${myvars.useremail} namespaces="git" ${sshSigningKey}
   '';
 
   # # GitHub CLI tool
@@ -40,7 +47,7 @@
     lfs.enable = true;
 
     signing = {
-      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKgFCAPwVhm/Xly252wSaFaqyR2Ci9qPnhL1/CjfZzX/";
+      key = sshSigningKey;
       signByDefault = true;
     };
 
@@ -60,6 +67,7 @@
       user.email = myvars.useremail;
       user.name = myvars.userfullname;
       gpg.format = "ssh";
+      gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.config/git/allowed_signers";
 
       init.defaultBranch = "main";
       trim.bases = "develop,master,main"; # for git-trim
