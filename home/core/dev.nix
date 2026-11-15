@@ -32,7 +32,7 @@
     pv # Tool for monitoring the progress of data through a pipeline
     rustup # Rust toolchain installer
     go # Go Programming language
-    marksman # Language Server for Markdown
+    markdown-oxide # Language server for Markdown
     taplo # TOML toolkit written in Rust
     just # Handy way to save and run project-specific commands
     luarocks # A package manager for Lua modules.

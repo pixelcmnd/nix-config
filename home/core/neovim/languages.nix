@@ -86,7 +86,7 @@ in
           jdtls.enable = true;
           pyright.enable = true;
           ts_ls.enable = true;
-          marksman.enable = true;
+          markdown_oxide.enable = true;
           clangd.enable = true;
           nim_langserver = {
             enable = true;
