@@ -2,6 +2,15 @@
   # dev utils / compilers / programming langs etc.
   home.packages = with pkgs; [
     # nix related
+    nixpkgs-review # Build packages affected by Nixpkgs pull requests
+    nix-update # Update package versions and source hashes
+    nix-init # Generate package expressions from source URLs
+    nix-prefetch-git # Prefetch Git sources and calculate their hashes
+    nix-prefetch-github # Prefetch GitHub sources and calculate their hashes
+    nix-output-monitor # Display build progress with nom
+    nix-tree # Explore store dependency trees
+    nix-diff # Explain differences between derivations
+    nvd # Show package changes between system generations
     nix-melt # A TUI flake.lock viewer https://github.com/nix-community/nix-melt
     deadnix # Find and remove unused code in .nix source files
     nixd # Feature-rich Nix language server interoperating with C++ nix
