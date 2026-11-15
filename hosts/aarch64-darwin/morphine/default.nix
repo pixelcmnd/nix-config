@@ -18,7 +18,10 @@ inputs.nix-darwin.lib.darwinSystem {
       nixpkgs.config.allowUnfree = true;
       nix.settings.experimental-features = "nix-command flakes";
       nix.settings.sandbox = "relaxed";
-      nix.settings.trusted-users = [ "root" myvars.username ];
+      nix.settings.trusted-users = [
+        "root"
+        myvars.username
+      ];
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
