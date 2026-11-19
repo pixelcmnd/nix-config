@@ -21,6 +21,11 @@
       url = "github:pixelcmnd/nvim-anywhere";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-extras = {
+      url = "github:pixelcmnd/nix-extras";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Flake outputs
