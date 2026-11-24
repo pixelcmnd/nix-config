@@ -83,112 +83,70 @@
           {
             app_id = "com.apple.systempreferences";
             floating = true;
-            focus = false;
           }
           {
             app_id = "com.apple.finder";
             floating = true;
-            focus = false;
           }
           {
             app_id = "com.apple.ScreenContinuity";
             floating = true;
-            focus = false;
           }
           {
             app_id = "com.apple.calculator";
-            floating = false;
-            focus = false;
             manage = false;
           }
           {
             app_id = "com.bitwarden.desktop";
-            floating = false;
-            focus = false;
             manage = false;
           }
           {
             app_id = "com.linguangming.shadowrocket";
-            floating = true;
-            focus = false;
+            manage = false;
           }
           {
             app_id = "io.ente.auth.mac";
-            floating = true;
-            focus = false;
+            manage = false;
           }
           {
             app_name = "neovide";
             floating = true;
-            focus = false;
           }
           {
             app_id = "app.zen-browser.zen";
-            floating = false;
-            focus = false;
+            workspace = 0;
+          }
+          {
+            app_id = "org.mozilla.firefox";
+            workspace = 0;
+          }
+          {
+            app_id = "com.apple.Safari";
             workspace = 0;
           }
           {
             app_id = "org.whispersystems.signal-desktop";
-            floating = false;
-            focus = false;
             workspace = 4;
           }
           {
             app_id = "ru.keepcoder.Telegram";
-            floating = false;
-            focus = false;
             workspace = 4;
           }
           {
             app_id = "com.apple.mail";
-            floating = false;
-            focus = false;
             workspace = 5;
           }
           {
             app_id = "com.hnc.Discord";
-            floating = false;
-            focus = false;
             workspace = 5;
           }
           {
             app_id = "com.hnc.DiscordCanary";
-            floating = false;
-            focus = false;
             workspace = 5;
-          }
-          {
-            app_id = "com.happ.www";
-            floating = true;
-            focus = false;
-          }
-          {
-            app_id = "com.liguangming.Shadowrocket";
-            floating = true;
-            focus = false;
           }
           {
             app_id = "ru.yandex.desktop.music";
-            floating = false;
-            focus = false;
             workspace = 8;
-          }
-          {
-            app_id = "net.smetonis.lightning";
-            floating = false;
-            focus = false;
-            workspace = 5;
-          }
-          {
-            app_id = "com.yourcompany.AmneziaVPN";
-            floating = true;
-            focus = false;
-          }
-          {
-            app_id = "org.amnezia.awg";
-            floating = true;
-            focus = false;
           }
         ];
       };
