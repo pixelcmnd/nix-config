@@ -31,6 +31,8 @@
     # JavaScript / TypeScript
     typescript-language-server
     prettier
+    nodejs_latest
+    biome # Toolchain of the web
 
     # Clang
     clang # C/C++ compiler and language-family frontend for LLVM
