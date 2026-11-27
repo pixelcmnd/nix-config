@@ -20,27 +20,23 @@ in
     ${myvars.useremail} namespaces="git" ${sshSigningKey}
   '';
 
-  # # GitHub CLI tool
-  # # https://cli.github.com/manual/
-  # programs.gh = {
-  #   enable = true;
-  #   settings = {
-  #     git_protocol = "ssh";
-  #     prompt = "enabled";
-  #     aliases = {
-  #       co = "pr checkout";
-  #       pv = "pr view";
-  #     };
-  #   };
-  #   hosts = {
-  #     "github.com" = {
-  #       "users" = {
-  #         "p1x3lid" = null;
-  #       };
-  #       "user" = "p1x3lid";
-  #     };
-  #   };
-  # };
+  # GitHub CLI tool
+  # https://cli.github.com/manual/
+  programs.gh = {
+    enable = true;
+    settings = {
+      git_protocol = "ssh";
+      prompt = "enabled";
+      aliases = {
+        co = "pr checkout";
+        pv = "pr view";
+        prs = "pr list";
+        issues = "issue list";
+        fork = "repo fork";
+        clone = "repo clone";
+      };
+    };
+  };
 
   programs.git = {
     enable = true;
